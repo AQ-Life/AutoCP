@@ -1,0 +1,6 @@
+DATA_PATH <- "data/"
+PROJECT_PATH <- "02_Project/"
+TABLE_PATH <- "03_Tables/"
+FIGURE_PATH <- "04_Figures/"
+DATAVIEW_PATH <- "05_DataView/"
+TEAL_PATH <- "06_teal/"
