@@ -1,13 +1,7 @@
 
-source(
-  file = "global.R",
-  local = T,
-  encoding = "UTF-8"
-)
-
 link_github <- tags$a(shiny::icon("github"), "Shiny", href = "https://github.com/rstudio/shiny", target = "_blank")
 
-shinyUI(page_navbar(
+shinyUI <- shinyUI(page_navbar(
   title = "AutoCP: Clinical Programming Tool",
   navbar_options = navbar_options(),
   header = list(

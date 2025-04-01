@@ -4,7 +4,13 @@ source(
   encoding = "UTF-8"
 )
 
-shinyServer(
+source(
+  file = "ui.R",
+  local = TRUE,
+  encoding = "UTF-8"
+)
+
+shinyServer <- shinyServer(
   function(input, output, session) {
     
     datasets <- reactiveValues()
@@ -304,3 +310,5 @@ shinyServer(
     }, height = 600)
   }
 )
+
+shinyApp(shinyUI,shinyServer)
