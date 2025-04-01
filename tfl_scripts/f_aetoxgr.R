@@ -46,10 +46,7 @@ generate_tfl <- function(data, popdata, params) {
   legendpos <- c(0.1,0.95)
   Annotpos <- 75
   
-  sysfonts::font_add(family = "KT", regular = "simkai.ttf")
-  sysfonts::font_add(family = "arialbd", regular = "arialbd.ttf")
-  showtext::showtext_auto()
-  showtext::showtext_opts(dpi = 300)
+
 
   bign <- bigNdata %>% 
     group_by(trtn) %>%

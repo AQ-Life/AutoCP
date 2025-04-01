@@ -1,0 +1,13 @@
+name: autocp
+title:
+username: aqlife
+account: aqlife
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14381374
+bundleId:
+url: https://aqlife.shinyapps.io/autocp/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: data/adae.sas7bdat|data/adeff.sas7bdat|data/adeffi.sas7bdat|data/adsl.sas7bdat|data/adtte.sas7bdat

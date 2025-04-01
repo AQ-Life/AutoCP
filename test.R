@@ -1,46 +1,34 @@
-rm(list = ls())
-library(haven)
-library(tidyverse)
-library(rtables)
-library(tern)
-
-adsl <- read_sas("data/adsl.sas7bdat") %>% 
-  mutate(trtc = TRT01A,
-         trtn = TRT01AN)
-
-adae <- read_sas("data/adae.sas7bdat") %>% 
-  filter(AECAT == "征集性不良事件") %>% 
-  mutate(trtc = TRTA,
-         trtn = TRTAN,
-         TOXGR = factor(ATOXGRN, labels = c("1级", "2级", "3级及以上"),levels = c(1, 2, 3)))
-
-lyt <- basic_table(title = "Adverse events",
-                   subtitles = "Safety Set",
-                   main_footer = "MedDRA version xx.x.",
-                   show_colcounts = TRUE) %>% 
-  split_cols_by("trtc") %>% 
-  analyze_num_patients("USUBJID",
-                       .stats = c("unique"),
-                       .labels = c(unique = "Total number of pts with at least one AE.")) %>% 
-  split_rows_by("AEBODSYS",
-                split_label = "System Organ Class",
-                label_pos = "topleft",
-                child_labels = "visible") %>% 
-  summarize_num_patients("USUBJID",
-                         .stats = c("unique"),
-                         .labels = c(unique = "any AEBODSYS")) %>% 
-  count_occurrences("AEDECOD",
-                    .indent_mods = -1L) %>%
-  append_topleft("  Preferred Team") 
-
-build_table(lyt, adae
-            ,alt_counts_df = adsl
-) %>% 
-  prune_table(prune_func = keep_rows(
-    has_fraction_in_any_col(
-      atleast = 0, # specify threshold，根据需要指定发生率>=5%的AE 
-      col_names = levels(adsl$trtc)
+ui <- fluidPage(
+  tags$h2("Select / Deselect all"),
+  pickerInput(
+    inputId = "p1",
+    label = "Select all option",
+    choices = rownames(mtcars),
+    multiple = TRUE,
+    options = list(`actions-box` = TRUE)
+  ),
+  verbatimTextOutput("r1"),
+  br(),
+  pickerInput(
+    inputId = "p2",
+    label = "Select all option / custom text",
+    choices = rownames(mtcars),
+    multiple = TRUE,
+    options = list(
+      `actions-box` = TRUE,
+      `deselect-all-text` = "None...",
+      `select-all-text` = "Yeah, all !",
+      `none-selected-text` = "zero"
     )
-  ))
-# trim_rows(teae)
+  ),
+  verbatimTextOutput("r2")
+)
 
+server <- function(input, output, session) {
+  
+  output$r1 <- renderPrint(input$p1)
+  output$r2 <- renderPrint(input$p2)
+  
+}
+
+shinyApp(ui = ui, server = server)

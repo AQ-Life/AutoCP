@@ -62,17 +62,18 @@ shinyServer(
                  selected = if(!is.na(default_value) && default_value %in% colnames(dataset)) 
                    default_value else ""),
                
-               "multi_column" = pickerInput(
+               "multi_column" = selectInput(
                  inputId, label,
-                 choices = colnames(dataset),
+                 choices = c("", colnames(dataset)),
                  multiple = TRUE,
-                 # 处理多个默认值
                  selected = if(!is.na(default_value)) {
+                 #   c("AGE", "SEX",    "ETHNIC")
                    default_values <- strsplit(default_value, ",\\s*")[[1]]
                    default_values[default_values %in% colnames(dataset)]
-                 } else NULL,
-                 options = list(actionsBox = TRUE)),
-               
+                   # browser()
+                 } else NULL
+                 ),
+
                "text_input" = textInput(
                  inputId, label,
                  value = if(!is.na(default_value)) default_value else ""),

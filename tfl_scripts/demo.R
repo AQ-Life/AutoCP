@@ -15,7 +15,8 @@ generate_tfl <- function(data, popdata, params) {
   }
   if (!is.null(params$analysis_pop) && params$analysis_pop != "") {
     filtered_data <- filtered_data %>% 
-      filter(eval(parse(text = paste(params$analysis_pop,"%in% c('是','Y')") )))
+      filter(eval(parse(text = paste(params$analysis_pop,"%in% c('是','Y')") ))) %>% 
+      mutate(TRT01P = forcats::fct_reorder(TRT01P, TRT01PN, min))
   }
   
   
@@ -58,6 +59,7 @@ generate_tfl <- function(data, popdata, params) {
     append_topleft("基线特征") %>% 
     build_table(filtered_data)
 
+  # browser()
   return(result)
 }
 
