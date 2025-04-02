@@ -4753,6 +4753,15 @@
     "01_Settings/color.R": {
       "checksum": "293351dc5c645e0efcd6c38c49494809"
     },
+    "01_Settings/font/arial.ttf": {
+      "checksum": "fa3228aadde0db988e1822c2f736c131"
+    },
+    "01_Settings/font/arialbd.ttf": {
+      "checksum": "858f5a50a4c3e5e6559a0c9b128eee60"
+    },
+    "01_Settings/font/simkai.ttf": {
+      "checksum": "6078b506afa793576f8a93475aab95b8"
+    },
     "01_Settings/Path.R": {
       "checksum": "6dff9372c8ad893460534d0eebb30d1c"
     },
@@ -4826,7 +4835,7 @@
       "checksum": "f3e097083f1fa334076e839a9c982b24"
     },
     "global.R": {
-      "checksum": "6a4d555ad42f99475d3d4444642669cd"
+      "checksum": "9d270a371efa37cc0228d1db9aa979f9"
     },
     "server.R": {
       "checksum": "3e57659b0204fe4578e695c9da400eb9"
