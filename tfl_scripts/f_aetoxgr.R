@@ -39,7 +39,7 @@ generate_tfl <- function(data, popdata, params) {
   aedata <- rbind(aedata,
                   mutate(aedata, trtn = 9))
   
-  graphfont <- 'KT'
+  # graphfont <- 'KT'
   Xlabel <- c("")
   Ylabel <- c("不良事件发生率（%）")
   color = c("red", "blue", "grey")
@@ -108,11 +108,11 @@ generate_tfl <- function(data, popdata, params) {
     mutate(GrpLabel = levels(aedata$trtc),
            nlabel = str_c("(N = ",as.character(bign),")"))
 
-  if (graphfont == "KT" ) {
-    legendlabel <- c("三级及以上","二级","一级")
-  } else if (graphfont == "arialbd" ){
+  # if (graphfont == "KT" ) {
+  #   legendlabel <- c("三级及以上","二级","一级")
+  # } else if (graphfont == "arialbd" ){
     legendlabel <- c(">=Grade 3","Grade 2","Grade 1")
-  }
+  # }
 
 
   vline = data.frame()
@@ -135,13 +135,13 @@ generate_tfl <- function(data, popdata, params) {
              show.legend = TRUE)+
     geom_text(data = Annotation ,aes(x=order ,y=Annotpos ,label = GrpLabel ),
               na.rm = TRUE ,
-              family = "KT",
+              # family = "KT",
               fontface = "bold",
               size = 2,
               show.legend = FALSE) +
     geom_text(data = Annotation ,aes(x = order ,y=(Annotpos - 8) ,label = nlabel ),
               na.rm = TRUE ,
-              family = "KT",
+              # family = "KT",
               fontface = "bold",
               size = 2,
               show.legend = FALSE)+
@@ -168,8 +168,8 @@ generate_tfl <- function(data, popdata, params) {
     coord_cartesian(ylim = c(0, 100),clip = "off" )+
     theme_bw() +
     theme(
-      text = element_text(family = "KT",face = "bold", color = "black", size = 8),
-      axis.text = element_text(family = "KT", face = "bold", color = "black", size = 6),
+      text = element_text(face = "bold", color = "black", size = 8),
+      axis.text = element_text(face = "bold", color = "black", size = 6),
       # strip.text = element_blank(),
       # panel.border = element_blank(),
       # panel.background = element_blank(),
